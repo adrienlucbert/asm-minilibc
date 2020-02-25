@@ -25,7 +25,7 @@ NAME	=	libasm.so
 all:    $(NAME)
 
 %.o: %.asm
-	nasm -f elf64 -Wall $< -o $@ -g -F dwarf
+	nasm -f elf64 $< -o $@ -F dwarf
 
 $(NAME):	$(OBJ)
 	ld -shared -o $(NAME) $(OBJ)

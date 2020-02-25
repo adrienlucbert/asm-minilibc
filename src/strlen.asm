@@ -6,8 +6,7 @@ section	.text
 strlen:
 	xor rcx, rcx            ; set rcx (8 bytes counter) at 0
     cmp rdi, 0              ; compare string passed as parameter to NULL
-    jne count               ; if not NULL, start counter loop
-    jmp end                 ; else, return 0
+    je end                  ; if NULL, jump to the end (return 0)
 
 count:
     inc rcx                 ; increment length counter
