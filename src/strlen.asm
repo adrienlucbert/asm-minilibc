@@ -1,17 +1,19 @@
 bits	64
 global	strlen              ; export strlen symbol for linker
 
+; size_t strlen(const char *s)
+; s = rdi
+
 section	.text
 
 strlen:
 	xor rcx, rcx            ; set rcx (8 bytes counter) at 0
-    cmp rdi, 0              ; compare string passed as parameter to NULL
-    je end                  ; if NULL, jump to the end (return 0)
 
 count:
+    cmp byte [rdi + rcx], 0 ; compare character of s at index rcx to \0
+    je end                  ; if \0, return rcx value
     inc rcx                 ; increment length counter
-    cmp byte [rdi + rcx], 0 ; compare character of string at index rcx to \0
-    jne count               ; if not \0, continue looping throught string
+    jmp count               ; keep counting characters
 
 end:
     mov rax, rcx            ; set return value to counter value

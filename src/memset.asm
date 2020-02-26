@@ -1,21 +1,26 @@
 bits	64
-global	memset              ; export memset symbol for linker
+global	memset                  ; export memset symbol for linker
+
+; void *memset(void *s, int c, size_t n)
+; s = rdi
+; c = sil
+; n = rdx
 
 section	.text
 
 memset:
-	xor rcx, rcx            ; set rcx (8 bytes counter) at 0
-    cmp rdi, 0              ; compare string to NULL
-    je end                  ; if it is NULL, return NULL
-    cmp rcx, rdx            ; compare counter to max index (n)
-    jge end                 ; stop if counter is greater than or equal to max index
+	xor rcx, rcx                ; set rcx (8 bytes counter) at 0
+    cmp rdi, 0                  ; compare s to NULL
+    je end                      ; if it is NULL, return NULL
+    cmp rcx, rdx                ; compare counter to n
+    jge end                     ; stop if counter is greater than or equal to n
 
 fill:
-    mov [rdi + rcx], sil    ; set value of char from string at index rcx
-    inc rcx                 ; increment counter
-    cmp rcx, rdx            ; compare counter to max index (n)
-    jl fill                 ; if counter < n, keep filling memory area
+    mov byte [rdi + rcx], sil   ; set value of char from s at index rcx to c
+    inc rcx                     ; increment counter
+    cmp rcx, rdx                ; compare counter to n
+    jl fill                     ; if counter < n, keep filling s
 
 end:
-    mov rax, rdi            ; set return value to string
-    ret                     ; leave function
+    mov rax, rdi                ; set return value to s
+    ret                         ; leave function
