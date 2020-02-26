@@ -7,7 +7,7 @@ global	strlen              ; export strlen symbol for linker
 section	.text
 
 strlen:
-	xor rcx, rcx            ; set rcx (8 bytes counter) at 0
+	xor rcx, rcx            ; set counter to 0
 
 count:
     cmp byte [rdi + rcx], 0 ; compare character of s at index rcx to \0

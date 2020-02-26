@@ -5,11 +5,12 @@ global	memset                  ; export memset symbol for linker
 ; s = rdi
 ; c = sil
 ; n = rdx
+; ret = rax
 
 section	.text
 
 memset:
-	xor rcx, rcx                ; set rcx (8 bytes counter) at 0
+	xor rcx, rcx                ; set counter to 0
     cmp rdi, 0                  ; compare s to NULL
     je end                      ; if it is NULL, return NULL
     cmp rcx, rdx                ; compare counter to n

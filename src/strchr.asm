@@ -4,11 +4,12 @@ global	strchr              ; export strchr symbol for linker
 ; char *strchr(const char *s, int c)
 ; s = rdi
 ; c = sil
+; ret = rax
 
 section	.text
 
 strchr:
-	xor rcx, rcx            ; set rcx (8 bytes counter) at 0
+	xor rcx, rcx            ; set counter to 0
     xor rax, rax            ; set default return value to NULL (0)
     cmp rdi, 0              ; compare s to NULL
     je null                 ; if NULL, return NULL

@@ -1,10 +1,11 @@
 bits	64
-global	memcpy                  ; export strchr symbol for linker
+global	memcpy                  ; export memcpy symbol for linker
 
 ; void *memcpy(void *dest, const void *src, size_t n)
 ; dest = rdi
 ; src = rsi
 ; n = rdx
+; ret = rax
 
 section	.text
 
