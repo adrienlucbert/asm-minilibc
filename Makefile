@@ -29,7 +29,7 @@ all:    $(NAME)
 	nasm -o $@ $< -f elf64 -F dwarf
 
 $(NAME):	$(OBJ)
-	ld -shared -fPIC -o $(NAME) $(OBJ)
+	ld -shared -o $(NAME) $(OBJ)
 
 clean:
 	rm -f $(OBJ)

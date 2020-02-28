@@ -10,4 +10,30 @@ global	strncmp                 ; export strncmp symbol for linker
 section	.text
 
 strncmp:
-    
+
+compare:
+    cmp rdx, 0              ; compare counter to n
+    jle end0                ; if counter <= 0, return
+    mov r8b, byte [rsi]     ; as x86 can't perform mem to mem cmp, copy byte from s2 to scratch
+    cmp byte [rdi], r8b     ; compare byte from s1 to byte from s2
+    jne end                 ; if not equal, return
+    cmp byte [rdi], byte 0  ; check if end of s1 is not reached
+    je end                  ; if it is, return
+    cmp byte [rsi], byte 0  ; check if end of s2 is not reached
+    je end                  ; if it is, return
+    dec rdx                 ; increment counter
+    inc rdi                 ; increment s1 pointer
+    inc rsi                 ; increment s2 pointer
+    jmp compare             ; keep comparing
+
+end0:
+    xor rax, rax            ; set return value to 0
+    ret                     ; leave function
+
+end:
+    xor rax, rax            ; set return value to 0
+    xor r8, r8              ; set scratch register r8 to 0
+    mov al, byte [rdi]      ; set return value to char from s1
+    mov r8b, byte [rsi]     ; set r8 value to char from s2
+    sub rax, r8             ; substract r8 value to rax
+    ret                     ; leave function
