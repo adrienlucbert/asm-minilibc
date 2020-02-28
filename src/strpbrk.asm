@@ -3,8 +3,8 @@ global strpbrk              ; export strpbrk symbol for linker
 extern strchr               ; import strchr symbol
 
 ; char *strpbrk(const char *s, const char *accept)
-; s = rdi
-; accept = rsi
+; s = r8
+; accept = r9
 ; ret = rax
 
 section	.text
