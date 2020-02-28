@@ -21,7 +21,7 @@ compare:
     je end                  ; if it is, return
     cmp byte [rsi], byte 0  ; check if end of s2 is not reached
     je end                  ; if it is, return
-    dec rdx                 ; increment counter
+    dec rdx                 ; decrement counter
     inc rdi                 ; increment s1 pointer
     inc rsi                 ; increment s2 pointer
     jmp compare             ; keep comparing

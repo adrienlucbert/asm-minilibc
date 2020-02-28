@@ -17,7 +17,9 @@ ASM		=	src/memcpy.asm		\
 			src/strlen.asm		\
 			src/strncmp.asm		\
 			src/strpbrk.asm		\
-			src/strstr.asm
+			src/strstr.asm		\
+			src/toupper.asm		\
+			src/tolower.asm
 
 OBJ		=	$(ASM:.asm=.o)
 
