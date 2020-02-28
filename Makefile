@@ -8,6 +8,7 @@
 ASM		=	src/memcpy.asm		\
 			src/memmove.asm		\
 			src/memset.asm		\
+			src/strrchr.asm		\
 			src/rindex.asm		\
 			src/strcasecmp.asm	\
 			src/strchr.asm		\
@@ -25,10 +26,10 @@ NAME	=	libasm.so
 all:    $(NAME)
 
 %.o: %.asm
-	nasm -f elf64 $< -o $@ -F dwarf
+	nasm -o $@ $< -f elf64 -F dwarf
 
 $(NAME):	$(OBJ)
-	ld -shared -o $(NAME) $(OBJ)
+	ld -shared -fPIC -o $(NAME) $(OBJ)
 
 clean:
 	rm -f $(OBJ)
