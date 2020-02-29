@@ -9,6 +9,7 @@ ASM		=	src/memcpy.asm		\
 			src/memmove.asm		\
 			src/memset.asm		\
 			src/strrchr.asm		\
+			src/index.asm		\
 			src/rindex.asm		\
 			src/strcasecmp.asm	\
 			src/strchr.asm		\
