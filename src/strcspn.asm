@@ -10,6 +10,9 @@ extern strchr                   ; import strchr symbol
 section	.text
 
 strcspn:
+    push r8                     ; save r8
+    push r9                     ; save r9
+    push rcx                    ; save rcx
     mov r8, rdi                 ; save s in r8
     mov r9, rsi                 ; save reject in r9
     xor rcx, rcx                ; set counter to 0
@@ -27,4 +30,7 @@ search:
 
 end:
     mov rax, rcx                ; set rcx as return value
+    pop rcx                     ; restore rcx
+    pop r9                      ; restore r9
+    pop r8                      ; restore r8
     ret

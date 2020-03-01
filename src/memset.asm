@@ -10,6 +10,7 @@ global	memset                  ; export memset symbol for linker
 section	.text
 
 memset:
+    push rcx                    ; save rcx
 	xor rcx, rcx                ; set counter to 0
     cmp rdi, 0                  ; compare s to NULL
     je end                      ; if it is NULL, return NULL
@@ -24,4 +25,5 @@ fill:
 
 end:
     mov rax, rdi                ; set return value to s
+    pop rcx                     ; restore rcx
     ret                         ; leave function

@@ -7,6 +7,7 @@ global	strlen              ; export strlen symbol for linker
 section	.text
 
 strlen:
+    push rcx                ; save rcx
 	xor rcx, rcx            ; set counter to 0
 
 count:
@@ -17,4 +18,5 @@ count:
 
 end:
     mov rax, rcx            ; set return value to counter value
+    pop rcx                 ; restore rcx
     ret                     ; leave function

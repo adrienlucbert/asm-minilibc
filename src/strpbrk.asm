@@ -10,6 +10,8 @@ extern strchr               ; import strchr symbol
 section	.text
 
 strpbrk:
+    push r8                 ; save r8
+    push r9                 ; save r9
     mov r8, rdi             ; save s to r8
     mov r9, rsi             ; save accept to r9
     xor rax, rax            ; set default return value to NULL (0)
@@ -27,4 +29,6 @@ search:
     jmp search              ; keep searching
 
 end:
+    pop r9                  ; restore r9
+    pop r8                  ; restore r8
     ret                     ; leave function

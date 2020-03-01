@@ -15,9 +15,9 @@ search:
     cmp byte [rdi], sil     ; compare first char from s to c
     cmove rax, rdi          ; if they match, set rdi as return value
     cmp byte [rdi], 0       ; compare first char from s to \0
-    je stop                 ; if \0, return rax
+    je end                  ; if \0, return rax
     inc rdi                 ; increment counter
     jmp search              ; keep searching for c
 
-stop:
+end:
     ret                     ; leave function

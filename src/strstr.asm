@@ -9,6 +9,8 @@ global	strstr                  ; export strstr symbol for linker
 section	.text
 
 strstr:
+    push r8                     ; save r8
+    push rcx                    ; save rcx
     xor rax, rax                ; set default return value to NULL (0)
     cmp rdi, 0                  ; if haystack is NULL
     je end                      ; return NULL
@@ -38,4 +40,6 @@ next:
     jmp search                  ; keep searching needle in haystack
 
 end:
+    pop rcx                     ; restore rcx
+    pop r8                      ; restore r8
     ret                         ; leave function

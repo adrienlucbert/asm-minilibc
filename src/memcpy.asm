@@ -11,6 +11,8 @@ section	.text
 
 memcpy:
     mov rax, rdi                ; set return value to dest
+    push rcx                    ; save rcx
+    push r8                     ; save r8
     xor rcx, rcx                ; set counter to 0
 
 cpy:
@@ -22,4 +24,6 @@ cpy:
     jmp cpy                     ; keep copying
 
 end:
+    pop r8                      ; restore r8
+    pop rcx                     ; restore rcx
     ret                         ; leave function

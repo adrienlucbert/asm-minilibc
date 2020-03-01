@@ -15,7 +15,7 @@ search:
     je nonnull              ; if they match, return rdi
     cmp byte [rdi], 0       ; compare first char from s to \0
     je null                 ; if \0, return NULL
-    inc rdi                 ; increment counter
+    inc rdi                 ; increment s pointer
     jmp search              ; keep searching for c
 
 nonnull:

@@ -11,6 +11,8 @@ section	.text
 
 memmove:
     mov rax, rdi        ; set dest as return value
+    push rcx            ; save rcx
+    push r8             ; save r8
     xor rcx, rcx        ; set counter to 0
 
 save:
@@ -27,10 +29,12 @@ copy:
     cmp rcx, 0          ; if counter <= 0
     jle end             ; return
     dec rdi             ; decrement dest pointer
-    pop r8              ; retrieve src char from stack
+    pop r8              ; restore src char from stack
     mov byte [rdi], r8b ; copy dest src char to dest
     dec rcx             ; decrement counter
     jmp copy            ; keep copying
 
 end:
+    pop r8              ; restore r8
+    pop rcx             ; restore rcx
     ret                 ; leave function

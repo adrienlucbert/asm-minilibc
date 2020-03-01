@@ -10,6 +10,11 @@ extern tolower              ; import tolower symbol
 section	.text  
 
 strcasecmp:
+    push r8                 ; save r8
+    push r9                 ; save r9
+    push r10                ; save r10
+    push r11                ; save r11
+    push r12                ; save r12
     mov r8, rdi             ; save s1 into r8
     mov r9, rsi             ; save s2 into r9
     xor rdi, rdi            ; set rdi to 0
@@ -36,6 +41,11 @@ end:
     xor rax, rax            ; set return value to 0
     xor r12, r12            ; set scratch register r8 to 0
     mov al, byte [r8]       ; set return value to char from s1
-    mov r12b, byte [r9]      ; set r8 value to char from s2
-    sub rax, r12             ; substract r8 value to rax
+    mov r12b, byte [r9]     ; set r8 value to char from s2
+    sub rax, r12            ; substract r8 value to rax
+    pop r12                 ; restore r12
+    pop r11                 ; restore r11
+    pop r10                 ; restore r10
+    pop r9                  ; restore r9
+    pop r8                  ; restore r8
     ret                     ; leave function
